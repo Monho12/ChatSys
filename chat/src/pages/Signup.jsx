@@ -1,30 +1,32 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import loginImg from "../assets/Signup.svg";
 import { AuthContext } from "../contexts/AuthProvider";
 import { client } from "../Client";
 
 export const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { Navigator } = useContext(AuthContext);
+  const username = useRef();
+  const password = useRef();
+  const passwordConfirm = useRef();
+  const { Navigator, verifyToken } = useContext(AuthContext);
 
   const onSubmit = () => {
     client
       .post("/signup", {
-        username,
-        password,
-        passwordConfirm,
+        username: username.current.value,
+        password: password.current.value,
+        passwordConfirm: passwordConfirm.current.value,
       })
       .then((response) => {
-        Navigator("/login");
+        window.localStorage.setItem("token", response.data);
+        verifyToken();
+        Navigator("/");
       });
   };
 
   return (
-    <div className="flex flex-col p-28 justify-center items-center h-screen bg-gray-700">
-      <div className="rounded-2xl flex p-10 justify-center items-center gap-20 shadow-2xl bg-sky-50 w-80 md:w-fit">
+    <div className="flex justify-center items-center h-screen bg-gray-700">
+      <div className="rounded-2xl flex p-10 justify-center items-center gap-20 shadow-2xl bg-sky-50 w-80 md:w-fit font-light">
         <div className="hidden md:block w-96">
           <img src={loginImg} alt="signupImg" className="rounded-2xl" />
         </div>
@@ -39,21 +41,22 @@ export const Signup = () => {
             <h5 className="text-base md:text-lg">Username</h5>
             <input
               placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
+              ref={username}
               className="border-2 rounded-2xl p-2.5 outline-none focus:ring"
             />
             <h5 className="text-base md:text-lg">Password</h5>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              ref={password}
               placeholder="Password"
               className="border-2 rounded-2xl p-2.5 outline-none focus:ring"
             />
-            <h5 className="text-base md:text-lg">Password</h5>
+            <h5 className="text-base md:text-lg">Confirm Password</h5>
             <input
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              placeholder="Password"
+              ref={passwordConfirm}
+              placeholder="Confirm Password"
               className="border-2 rounded-2xl p-2.5 outline-none focus:ring"
             />
+
             <button
               onClick={() => onSubmit()}
               className="rounded-2xl bg-indigo-200 hover:bg-indigo-300 active:bg-indigo-400 my-6 p-2.5"

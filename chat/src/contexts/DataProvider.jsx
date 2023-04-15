@@ -5,6 +5,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [allMessageContainer, setAllMessageContainer] = useState([]);
+  const [post, setPost] = useState([]);
 
   const GETAllMessages = () => {
     client
@@ -20,7 +21,13 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ GETAllMessages, setAllMessageContainer, allMessageContainer }}
+      value={{
+        post,
+        setPost,
+        GETAllMessages,
+        allMessageContainer,
+        setAllMessageContainer,
+      }}
     >
       {children}
     </DataContext.Provider>

@@ -9,19 +9,21 @@ export const AuthProvider = ({ children }) => {
   const Navigator = useNavigate();
 
   const verifyToken = () => {
-    const token = window.localStorage.token;
-    client
-      .get("verify", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        if (response.data === "Token Required")
-          return console.log("Why No Token!");
-        setUserData(response.data);
-        console.log(response.data);
-      });
+    if (window.localStorage.token) {
+      const token = window.localStorage.token;
+      client
+        .get("verify", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          if (response.data === "Token Required")
+            return console.log("Why No Token!");
+          setUserData(response.data);
+          console.log(response.data);
+        });
+    }
   };
 
   const Logout = () => {

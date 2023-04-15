@@ -1,19 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import loginImg from "../assets/Login.svg";
 import { client } from "../Client";
 
 export const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const username = useRef();
+  const password = useRef();
   const { verifyToken, Navigator } = useContext(AuthContext);
 
   const onSubmit = () => {
     client
       .post("/login", {
-        username,
-        password,
+        username: username.current.value,
+        password: password.current.value,
       })
       .then((response) => {
         window.localStorage.setItem("token", response.data);
@@ -23,8 +23,8 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-col p-28 justify-center items-center h-screen bg-gray-700">
-      <div className="rounded-2xl flex p-10 justify-center items-center gap-20 shadow-2xl bg-sky-50 w-80 md:w-fit">
+    <div className="flex justify-center items-center h-screen bg-gray-700">
+      <div className="rounded-2xl flex p-10 justify-center items-center gap-20 shadow-2xl bg-sky-50 w-80 md:w-fit font-light">
         <div className="hidden md:block w-96">
           <img src={loginImg} alt="loginImg" className="rounded-2xl" />
         </div>
@@ -39,13 +39,13 @@ export const Login = () => {
             <h5 className="text-base md:text-lg">Username</h5>
             <input
               placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
+              ref={username}
               className="border-2 rounded-2xl p-2.5 outline-none focus:ring"
             />
             <h5 className="text-base md:text-lg">Password</h5>
             <input
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              ref={password}
               className="border-2 rounded-2xl p-2.5 outline-none focus:ring"
             />
             <button
