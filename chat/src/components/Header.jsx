@@ -8,8 +8,8 @@ export const Header = () => {
   return (
     <div className="w-screen h-14 md:h-18 flex items-center text-white bg-gray-600 absolute top-0 justify-between">
       <Link to="/">
-        <div className="ml-3 border border-black p-1 hidden md:block">
-          <h1 className="text-2xl font-extralight">Your Daily Listener</h1>
+        <div className="ml-3 border border-black hidden md:block">
+          <h1 className="text-2xl font-extralight p-1.5">Your Daily Listener</h1>
         </div>
       </Link>
       <div className="flex items-center justify-center border border-black rounded-2xl h-8 px-3 py-4 mr-3">

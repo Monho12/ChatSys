@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     if (!window.localStorage.getItem("token")) {
       Navigator("/login");
     }
-  }, []);
+  },[]);
   return (
     <AuthContext.Provider
       value={{ userData, setUserData, verifyToken, Logout, Navigator }}

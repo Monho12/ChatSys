@@ -5,7 +5,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [allMessageContainer, setAllMessageContainer] = useState([]);
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
 
   const GETAllMessages = () => {
     client
