@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { BsFillTrashFill, BsHeartFill, BsHeart } from "react-icons/bs";
+import { useContext } from "react";
+import { BsFillTrashFill } from "react-icons/bs";
 import { DataContext } from "../contexts/DataProvider";
 import { client } from "../Client";
 import { Link } from "react-router-dom";
@@ -10,8 +10,17 @@ export const PostCard = ({ imageUrls, title, creatorId, createdAt, _id }) => {
   const { setPost } = useContext(DataContext);
   const { userData } = useContext(AuthContext);
 
+  const deleting = () => {
+    toast.info("Deleting..., wait for few seconds", {
+      position: toast.POSITION.TOP_CENTER,
+      hideProgressBar: true,
+      closeOnClick: true,
+      autoClose: 1000,
+    });
+  };
+
   const deleted = () => {
-    toast.error("Deleted, Resresh it!", {
+    toast.error("Deleted!", {
       position: toast.POSITION.TOP_CENTER,
       hideProgressBar: true,
       closeOnClick: true,
@@ -20,13 +29,14 @@ export const PostCard = ({ imageUrls, title, creatorId, createdAt, _id }) => {
   };
 
   const deletePost = () => {
+    deleting();
     client
       .delete(`post/${_id}`)
       .then(() => {
+        deleted();
         client
           .get("posts")
           .then((res) => {
-            deleted();
             setPost(res.data);
           })
           .catch((err) => {

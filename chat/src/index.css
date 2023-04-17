@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.HomeBGImage {
+  background-image: url(./assets/Home.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ChatBGImage {
+  background-image: url(./assets/Home2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
