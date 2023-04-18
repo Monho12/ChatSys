@@ -5,7 +5,7 @@ import { client } from "../Client";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
   const Navigator = useNavigate();
 
   const verifyToken = () => {

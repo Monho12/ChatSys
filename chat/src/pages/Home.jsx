@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link } from "react-router-dom";
-import HomeIMG2 from "../assets/Home2.jpg";
 import Loading from "../assets/Loading3.gif";
 
 export const Home = () => {
