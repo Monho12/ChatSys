@@ -12,19 +12,17 @@ export const Header = () => {
         param.pathname === "/" ? "bg-transparent" : "bg-gray-600"
       }  absolute top-0 justify-between p-2`}
     >
-      {!userData && (
-        <Link to="/">
-          <div
-            className={`ml-3 border-2 border-black  ${
-              param.pathname === "/" ? "border-white" : "border-black"
-            }  rounded-md`}
-          >
-            <h1 className="text-lg font-light p-1.5  md:text-2xl">
-              Your Daily Listener
-            </h1>
-          </div>
-        </Link>
-      )}
+      <Link to="/">
+        <div
+          className={`ml-3 border-2 border-black  ${
+            param.pathname === "/" ? "border-white" : "border-black"
+          }  rounded-md`}
+        >
+          <h1 className="text-lg font-light p-1.5  md:text-2xl">
+            Your Daily Listener
+          </h1>
+        </div>
+      </Link>
 
       <div
         className={`flex items-center justify-center  ${
