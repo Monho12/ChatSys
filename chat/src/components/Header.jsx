@@ -18,9 +18,7 @@ export const Header = () => {
             param.pathname === "/" ? "border-white" : "border-black"
           }  rounded-md`}
         >
-          <h1 className="text-lg font-light p-1.5  md:text-2xl">
-            Your Daily Listener
-          </h1>
+          <h1 className="text-lg font-medium p-1.5  md:text-lg">MnhoGram</h1>
         </div>
       </Link>
 
@@ -31,7 +29,7 @@ export const Header = () => {
       >
         {userData ? (
           <Link to={`/profile/${userData && userData._id}`}>
-            <div className="text-xl font-light text-white">
+            <div className="text-xl text-white">
               {userData && userData.username}
             </div>
           </Link>

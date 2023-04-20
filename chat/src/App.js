@@ -1,4 +1,4 @@
-import { Header } from "./components";
+import { Header, SinglePostPage } from "./components";
 import { Routes, Route } from "react-router-dom";
 import {
   Chat,

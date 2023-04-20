@@ -8,7 +8,7 @@ export const Home = () => {
 
   return (
     <div className="flex items-center justify-center h-screen flex-col HomeBGImage">
-      <div className="flex flex-col text-center h-96 w-96 items-center justify-evenly">
+      <div className="flex flex-col text-center items-center justify-evenly">
         <h1 className="text-white text-3xl font-extralight">
           {userData ? `Hello ${userData && userData.username}!` : ""}
         </h1>
