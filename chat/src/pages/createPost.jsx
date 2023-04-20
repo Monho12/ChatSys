@@ -73,13 +73,6 @@ export const CreatePost = () => {
 
   return (
     <div className="flex flex-col h-screen justify-center items-center bg-gray-700">
-      <div className="absolute top-1 left-4 md:hidden">
-        <Link to="/">
-          <button className="border-2 border-rose-400 text-white p-3 rounded-md">
-            Back
-          </button>
-        </Link>
-      </div>
       {warn && <h1 className="text-rose-500">{warn && warn}!</h1>}
       {userData ? (
         <>
@@ -94,7 +87,7 @@ export const CreatePost = () => {
             <input
               placeholder="title"
               ref={title}
-              className="border-2 rounded p-2.5 outline-none focus:ring"
+              className="border-2 rounded p-2.5 outline-none focus:ring w-72 md:w-80"
             />
             <input type="file" accept="image/*" onChange={convertToBase64} />
             <div>

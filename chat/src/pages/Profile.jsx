@@ -28,7 +28,7 @@ export const Profile = () => {
     <div className="flex flex-col items-center justify-center h-screen bg-gray-700">
       {profile.Posts && (
         <>
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center pt-14">
             <div className="text-2xl text-white font-extralight">
               Username: {profile && profile.username}
             </div>
